@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Lesson xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://ulearn.azurewebsites.net/lesson">
+    <title>Задание</title>
+    <id>c9920bca-0b07-46e7-b9b4-043ec35dca73</id>
+
+    <md>
+### Перед началом задания
+1.  [Зарегистрируйтесь](/Account/Register) или [авторизуйтесь](/Login).
+2.  [Скачайте](ExerciseZip) проект с кодом.
+### Задание
+Разработчик написал приложение, которое управляет работой кофе-машины
+```
+public interface ICoffeeMachine
+{
+	int Balance { get; }
+	CoffeeType CoffeeType { get; }
+	SugarLevel SugarLevel { get; }
+	Size Size { get; }
+	WorkStatus WorkStatus { get; }
+
+	void InsertMoney(int moneyAmount);
+	int GetChange();
+	void SelectCoffee(CoffeeType coffeeType);
+	void SelectSugarLevel(SugarLevel sugarLevel);
+	void SelectSize(Size size);
+	void Run();
+	Coffee EjectCup();
+}
+```
+
+### Что делать
+1.  Изучите содержимое проекта
+2.  В классе ```CoffeeMachineTestsTask``` напишите тесты на это приложение.
+3.  Скопируйте содержимое файла CoffeeMachineTestsTask.cs в окно и нажмите кнопку "Отправить".
+
+Найдите и нажмите кнопку ```Отправить```. Вот прямо сейчас :) Вы увидите автоматическую проверку задания.
+Её можно выполнять сколько угодно раз.
+    </md>
+
+    <proj-exercise type="check-exit-code">
+        <max-score>1</max-score>
+        <correctness-score>1</correctness-score>
+        <require-review>true</require-review>
+        <hide-solutions>true</hide-solutions>
+        <hide-expected-output>true</hide-expected-output>
+        <csproj-file-path>CoffeeMachine\CoffeeMachine.csproj</csproj-file-path>
+        <startup-object>CoffeeMachine.Program</startup-object>
+        <user-code-file-path>CoffeeMachineTestsTask.cs</user-code-file-path>
+        <validator remove-defaults="true" />
+        <texts>
+            <waiting-for-code-review>Смотрите вывод программы внизу страницы.</waiting-for-code-review>
+            <code-review-passed>Смотрите вывод программы внизу страницы.</code-review-passed>
+        </texts>
+        <initial-code>
+            <![CDATA[
+using FluentAssertions;
+using NUnit.Framework;
+
+namespace CoffeeMachine
+{
+    [TestFixture]
+    public class CoffeeMachineTestsTask
+    {
+        //это свойство удалять нельзя, без него работать не будет
+        public ICoffeeMachine CoffeeMachine { get; protected set; }
+
+        //этот метод удалять нельзя, без него работать не будет.
+        //CoffeeMachine меняется на разные некорректные реализации при запуске проверки заданий.
+        [SetUp]
+        public virtual void SetUp() => CoffeeMachine = new CoffeeMachine();
+
+        //Пример теста
+        [Test]
+        public void SimpleTest()
+        {
+            const CoffeeType coffeeType = CoffeeType.Latte;
+            var coffeePrice = Menu.Price(coffeeType);
+            
+            CoffeeMachine.SelectCoffee(coffeeType);
+            CoffeeMachine.InsertMoney(coffeePrice);
+            CoffeeMachine.SelectSugarLevel(SugarLevel.Low);
+            CoffeeMachine.SelectSize(Size.Large);
+            CoffeeMachine.Run();
+            var coffee = CoffeeMachine.EjectCup();
+
+            coffee.Type.Should().Be(coffeeType);
+        }
+    }
+}]]>
+        </initial-code>
+
+    </proj-exercise>
+</Lesson>

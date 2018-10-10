@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C96E77E8-7BEC-4F80-8F8C-3C0D4DB8E67D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoffeeMachine</RootNamespace>
+    <AssemblyName>CoffeeMachine</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CoffeeMachine.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentAssertions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assemblies\FluentAssertions.5.2.0\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Assemblies\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="checking\IncorrectImplementations\IncorrectCoffeeMachineAlwaysFails.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_EjectCupA.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_EjectCupB.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_GetChangeA.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_GetChangeB.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_GetChangeC.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_GetChangeD.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_InsertMoneyA.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_InsertMoneyB.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_InsertMoneyC.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_InsertMoneyD.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_InsertMoneyE.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_InsertMoneyF.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_InsertMoneyG.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_RunA.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_RunB.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_RunC.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_RunD.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectCoffeeA.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectCoffeeB.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectCoffeeC.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectSizeA.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectSizeB.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectSizeC.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectSugarA.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectSugarB.cs" />
+    <Compile Include="checking\IncorrectImplementations\Incorrect_SelectSugarC.cs" />
+    <Compile Include="CoffeeMachineTestsTask.cs" />
+    <Compile Include="checking\MechanicsTests\TestRunReportTests.cs" />
+    <Compile Include="checking\Mechanics\AllBugsReport.cs" />
+    <Compile Include="checking\Mechanics\Attributes\SecretAttribute.cs" />
+    <Compile Include="checking\MechanicsTests\ExtensionsTests.cs" />
+    <Compile Include="checking\Mechanics\FailedTest.cs" />
+    <Compile Include="checking\Mechanics\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="checking\Mechanics\Extensions\StringExtensions.cs" />
+    <Compile Include="checking\Mechanics\SolutionValidations.cs" />
+    <Compile Include="checking\Mechanics\Attributes\IncorrectImplementationAttribute.cs" />
+    <Compile Include="checking\MechanicsTests\AssemblyHelpersTests.cs" />
+    <Compile Include="checking\MechanicsTests\Dummy.cs" />
+    <Compile Include="checking\MechanicsTests\TestRunningHelpersTests.cs" />
+    <Compile Include="checking\Mechanics\AssemblyHelpers.cs" />
+    <Compile Include="checking\Mechanics\ImplementationStatus.cs" />
+    <Compile Include="checking\Mechanics\IncorrectImplementationsTestBase.cs" />
+    <Compile Include="checking\Mechanics\IncorrectTests.cs" />
+    <Compile Include="checking\Mechanics\TestRunningHelpers.cs" />
+    <Compile Include="checking\Mechanics\TestRunReport.cs" />
+    <Compile Include="checking\Program.cs" />
+    <Compile Include="Common\CoffeeMachine.cs" />
+    <Compile Include="CoffeeMachine.cs" />
+    <Content Include="CoffeeMachineTestsTask.Solution.cs" />
+    <Compile Include="Common\CoffeeMachineException.cs" />
+    <Compile Include="Common\CoffeeType.cs" />
+    <Compile Include="Common\Menu.cs" />
+    <Compile Include="Common\ICoffeeMachine.cs" />
+    <Compile Include="Common\Size.cs" />
+    <Compile Include="Common\SugarLevel.cs" />
+    <Compile Include="Common\WorkStatus.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

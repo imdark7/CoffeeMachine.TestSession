@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Preview: Задание для тест-сессии</title>
+		<link rel="shortcut icon" href="favicon.ico?v=1" />
+		<meta charset='UTF-8'>
+			<link href='styles/awesome-bootstrap-checkbox.css' rel='stylesheet' />
+			<link href='styles/bootstrap.css' rel='stylesheet' />
+			<link href='styles/cobalt.css' rel='stylesheet' />
+			<link href='styles/codemirror.css' rel='stylesheet' />
+			<link href='styles/flexslider.css' rel='stylesheet' />
+			<link href='styles/font-awesome.css' rel='stylesheet' />
+			<link href='styles/jsdifflib.css' rel='stylesheet' />
+			<link href='styles/katex.min.css' rel='stylesheet' />
+			<link href='styles/show-hint.css' rel='stylesheet' />
+			<link href='styles/ulearn.css' rel='stylesheet' />
+	</head>
+	<body>
+		<div class='side-bar navbar-collapse collapse navbar-nav container'>
+				<ul class="nav">
+		<li class="units-list-item full-width units-list-item-text course-name"><a data-score="0/2">Задание для тест-сессии</a></li>
+	<li class="units-list-item clickable full-width">
+		<a data-toggle="collapse" href=#N0 class="units-list-item-text no-smooth-scrolling" data-score="0/2">Задание</a>
+		<ul id=N0 class="slides-list collapse in">
+	<li class="slide-list-item clickable selected full-size" onclick="window.location.href='000.html'" data-slide-id="23eace2a-1962-4992-9a0f-11c0201846d9">
+		<i class="navbar-label-default glyphicon glyphicon-edit navbar-label" title="Задача"></i>
+		<a href="000.html" style="margin-right: 5px">Задание для тест-сессии</a>
+		<span class="score right">0/2</span>
+	</li>
+		</ul>
+	</li>
+	</ul>
+
+		</div>
+
+		<div class="slide-container">
+			<div class="container body-content">
+				<div class="row">
+						<div class="slide">
+		<h1>
+			Задание для тест-сессии
+			<span class="score">0/2</span>
+		</h1>
+		<p><a href="/Exercise/StudentZip?courseId=BookLibrary.Course&amp;slideId=23eace2a-1962-4992-9a0f-11c0201846d9">Скачайте проект</a>.</p>
+<p>Напишите тесты</p>
+<p>Вы восхитительны!</p>
+	<div class="exercise">
+				<div class="exercise__submission">
+					<textarea class="code code-exercise hidden" data-lang="cs">// Вставьте сюда финальное содержимое файла BookLibraryTestsTask.cs
+
+
+</textarea>
+					<div class="loading-spinner">
+						<img src="/Content/loading.gif"/>
+					</div>
+						<div class="solution-control btn-group ctrl-group">
+			<button type="button" class="run-solution-button btn btn-primary no-rounds " data-url="/000.html?query=submit">
+				Отправить
+			</button>
+			</div>
+
+
+						<div class="run-result run-service-error">
+		<div class="run-verdict label-warning">Ошибка сервера :(</div>
+		<pre class="no-rounds"><code class="run-details"></code></pre>
+	</div>
+	<div class="run-result run-compile-error">
+		<div class="run-verdict label-danger">Ошибка компиляции</div>
+		<pre class="no-rounds"><code class="run-details"></code></pre>
+	</div>
+	<div class="run-result run-style-error">
+		<div class="run-verdict label-warning">Задача сдана. Осталось исправить стилевые ошибки!</div>
+		<pre class="no-rounds"><code class="run-details"></code></pre>
+		<div>
+			<small>Код со стилевыми ошибками трудно или неприятно читать другим программистам, поэтому он может не пройти код-ревью.</small>
+		</div>
+	</div>
+	<div class="run-result run-wa">
+		<div class="run-verdict label-danger">Неверный результат</div>
+		<div class="diff-table tablesorter"></div>
+	</div>
+	<div class="run-result run-wa-no-diff">
+		<div class="run-verdict label-danger">Неверный результат</div>
+		<pre class="no-rounds"><code class="run-details"></code></pre>
+	</div>
+	<div class="run-result run-success">
+		<div class="run-verdict label-success clearfix">Задача сдана!</div>
+		<pre class="no-rounds"><code class="run-details"></code></pre>
+	</div>
+
+				</div>
+
+
+			<div>
+				<h3>Подсказки</h3>
+				<ol>
+				</ol>
+				<h3>Комментарий после решения</h3>
+				<p></p>
+			</div>
+
+	</div>
+			<div class="revealed" data-toggle="tooltip" data-placement="left" title="Этот блок студенты не видят">
+<h3>Решение</h3>
+	<textarea class="code code-sample" data-lang="cs" data-ver="7">using System;
+using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+
+namespace BookLibrary
+{
+    [Category(&quot;Тесты механики автотестового задания. Остальное часть задания и может падать.&quot;)]
+    public class BookLibraryTestsTask
+    {
+        public virtual IBookLibrary CreateBookLibrary()
+        {
+            return new BookLibrary();
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            bookLibrary = CreateBookLibrary();
+        }
+
+
+        [TestCaseSource(nameof(GetAllBooksTestCaseSource))]
+        public void GetAllBooks_ShouldReturnExpectedBooks(Book[] books)
+        {
+            var expected = new List&lt;BookInfo&gt;();
+            foreach (var book in books)
+            {
+                bookLibrary.AddBook(book);
+                expected.Add(new BookInfo(book));
+            }
+
+            var actual = bookLibrary.GetAllBooks().Select(x =&gt; x.Book.Title).ToArray();
+
+            foreach (var book in books)
+            {
+                CollectionAssert.Contains(actual, book.Title);
+            }
+        }
+
+        public static IEnumerable&lt;Book[]&gt; GetAllBooksTestCaseSource()
+        {
+            yield return new Book[0];
+            yield return new[] {new Book(BookName1)};
+            yield return new[] {new Book(BookName1), new Book(BookName2)};
+
+            var manyBooks = new List&lt;Book&gt;();
+            for (var i = 0; i &lt; 500; i++)
+            {
+                manyBooks.Add(new Book($&quot;Book{i}&quot;));
+            }
+
+            yield return manyBooks.ToArray();
+        }
+
+        [Test]
+        public void BookInfo_ShouldInitializeWithCorrectState()
+        {
+            var bookInfo = new BookInfo(new Book(BookName1));
+            Assert.AreEqual(bookInfo.Book.Title, BookName1);
+            Assert.AreEqual(bookInfo.CurrentOwner, null);
+            Assert.AreEqual(bookInfo.Status, BookStatus.Free);
+            Assert.AreEqual(bookInfo.ShowQueue().Count(), 0);
+        }
+
+        [Test]
+        public void AddBook_ShouldAssignUniqueIdentifiers()
+        {
+            bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.AddBook(new Book(BookName2));
+
+            var allBooks = bookLibrary.GetAllBooks().ToArray();
+            var id1 = allBooks.Single(x =&gt; x.Book.Title == BookName1).BookId;
+            var id2 = allBooks.Single(x =&gt; x.Book.Title == BookName2).BookId;
+
+            Assert.That(id1, Is.Not.EqualTo(id2));
+        }
+
+        [Test]
+        public void AddBook_ShouldReturnSameId_As_WritesToDatabase()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            var singleBook = bookLibrary.GetAllBooks().Single(x =&gt; x.Book.Title == BookName1);
+            Assert.That(singleBook.BookId, Is.EqualTo(id));
+        }
+
+        [Test]
+        public void AddBook_GetBookById_ShouldReturnSameBook()
+        {
+            var id1 = bookLibrary.AddBook(new Book(BookName1));
+            var id2 = bookLibrary.AddBook(new Book(BookName2));
+            var book = bookLibrary.GetBookById(id2);
+            Assert.AreEqual(book.Book.Title, BookName2);
+            Assert.AreEqual(book.BookId, id2);
+        }
+
+        [Test]
+        public void AddBook_ShouldAddBookWithDuplicateTitle()
+        {
+            var id1 = bookLibrary.AddBook(new Book(BookName1));
+            var id2 = bookLibrary.AddBook(new Book(BookName1));
+            var book2 = bookLibrary.GetBookById(id2);
+            Assert.AreEqual(book2.Book.Title, BookName1);
+        }
+
+        [Test]
+        public void GetBookById_ShouldThrowOnNonExistentId()
+        {
+            bookLibrary.AddBook(new Book(BookName1));
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.GetBookById(Guid.NewGuid()));
+        }
+
+        [TestCaseSource(nameof(IncorrectBooksTestCaseSource))]
+        public void AddBook_IncorrectBook_ShouldThrow(Book incorrectBook)
+        {
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.AddBook(incorrectBook));
+        }
+
+        public static IEnumerable&lt;Book&gt; IncorrectBooksTestCaseSource()
+        {
+            return new[]
+            {
+                new Book(null),
+                null
+            };
+        }
+
+
+        [Test]
+        public void CheckoutBook_ShouldChangeBookStatusAndSetOccupied()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            const string user = &quot;some user&quot;;
+            bookLibrary.CheckoutBook(id, user);
+            var book = bookLibrary.GetBookById(id);
+            Assert.AreEqual(book.Status, BookStatus.Occupied);
+            Assert.AreEqual(book.CurrentOwner, user);
+        }
+
+        [Test]
+        public void CheckoutBook_ShouldThrowIfBookOccupied()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.CheckoutBook(id, &quot;user&quot;);
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.CheckoutBook(id, &quot;user&quot;));
+        }
+
+        [Test]
+        public void CheckoutBook_ShouldThrowOnNullUser()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.CheckoutBook(id, null));
+        }
+
+        [Test]
+        public void CheckoutBook_ShouldThrowOnNonExistantBook()
+        {
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.CheckoutBook(Guid.NewGuid(), &quot;user&quot;));
+        }
+
+        [Test]
+        public void CheckoutBook_ShouldNotModifyOtherBooks_WithSameTitle()
+        {
+            var id1 = bookLibrary.AddBook(new Book(BookName1));
+            var id2 = bookLibrary.AddBook(new Book(BookName1));
+
+            bookLibrary.CheckoutBook(id1, &quot;user&quot;);
+            var book2 = bookLibrary.GetBookById(id2);
+            Assert.AreEqual(book2.CurrentOwner, null);
+            Assert.AreEqual(book2.Status, BookStatus.Free);
+        }
+
+        [Test]
+        public void ReturnBook_ShouldSetBookFree_And_SetUserNull()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            var userName = &quot;user&quot;;
+            bookLibrary.CheckoutBook(id, userName);
+            bookLibrary.ReturnBook(id);
+            var book = bookLibrary.GetBookById(id);
+            Assert.AreEqual(book.CurrentOwner, null);
+            Assert.AreEqual(book.Status, BookStatus.Free);
+        }
+
+        [Test]
+        public void ReturnBook_ShouldThrow_OnFreeBook()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            var userName = &quot;user&quot;;
+            bookLibrary.CheckoutBook(id, userName);
+            bookLibrary.ReturnBook(id);
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.ReturnBook(id));
+        }
+
+        [Test]
+        public void ReturnBook_ShouldThrowOnNonExistantBook()
+        {
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.ReturnBook(Guid.NewGuid()));
+        }
+
+        [Test]
+        public void Enqueue_ShouldThrowOnNonExistantBook()
+        {
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.Enqueue(Guid.NewGuid(), &quot;user&quot;));
+        }
+
+        [Test]
+        public void Enqueue_ShouldThrowOnFreeBook()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.Enqueue(id, &quot;user&quot;));
+        }
+
+        [Test]
+        public void Enqueue_ShouldThrowOnCurrentReader()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            var userName = &quot;user&quot;;
+            bookLibrary.CheckoutBook(id, userName);
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.Enqueue(id, userName));
+        }
+
+        [Test]
+        public void Enqueue_ShouldThrowOnNullReader()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.CheckoutBook(id, &quot;some user&quot;);
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.Enqueue(id, null));
+        }
+
+        [TestCaseSource(nameof(EnqueueTestCaseSource))]
+        public void Enqueue_ShouldProduceExpectedQueue(string[] expectedQueue)
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.CheckoutBook(id, &quot;reading user&quot;);
+            foreach (var user in expectedQueue)
+            {
+                bookLibrary.Enqueue(id, user);
+            }
+
+            var actualQueue = bookLibrary.GetBookById(id).ShowQueue();
+            CollectionAssert.AreEquivalent(expectedQueue, actualQueue);
+        }
+
+        public static IEnumerable&lt;string[]&gt; EnqueueTestCaseSource()
+        {
+            yield return new[] {&quot;queue user1&quot;};
+            yield return new[]
+            {
+                &quot;queue user1&quot;,
+                &quot;queue user2&quot;
+            };
+
+            var list = new List&lt;string&gt;();
+            for (var i = 0; i &lt; 100; i++)
+            {
+                list.Add($&quot;queue user{i}&quot;);
+            }
+
+            yield return list.ToArray();
+        }
+
+        [Test]
+        public void Enqueue_ShouldThrowIfThisUserIsInQueue()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.CheckoutBook(id, &quot;user&quot;);
+            var user2 = &quot;other user&quot;;
+            bookLibrary.Enqueue(id, user2);
+            bookLibrary.Enqueue(id, &quot;someone else&quot;);
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.Enqueue(id, user2));
+        }
+
+        [Test]
+        public void CheckoutBook_QueueNotEmpty_ShouldThrowIfUserNotFirstInQueue()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.CheckoutBook(id, &quot;user&quot;);
+            bookLibrary.Enqueue(id, &quot;some one else&quot;);
+            bookLibrary.Enqueue(id, &quot;I want the book&quot;);
+            bookLibrary.ReturnBook(id);
+            Assert.Throws&lt;BookLibraryException&gt;(() =&gt; bookLibrary.CheckoutBook(id, &quot;I want the book&quot;));
+        }
+
+        [Test]
+        public void CheckoutBook_QueueNotEmpty_ShouldCheckoutBookIfUserFirstInQueue()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.CheckoutBook(id, &quot;user&quot;);
+            bookLibrary.Enqueue(id, &quot;I want the book&quot;);
+            bookLibrary.Enqueue(id, &quot;some one else&quot;);
+            bookLibrary.ReturnBook(id);
+            bookLibrary.CheckoutBook(id, &quot;I want the book&quot;);
+            var book = bookLibrary.GetBookById(id);
+            Assert.AreEqual(book.CurrentOwner, &quot;I want the book&quot;);
+            Assert.AreEqual(book.Status, BookStatus.Occupied);
+        }
+
+        [Test]
+        public void CheckoutBook_QueueNotEmpty_ShouldRemoveUserFromQueue_And_ShiftQueue()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            bookLibrary.CheckoutBook(id, &quot;user&quot;);
+            bookLibrary.Enqueue(id, &quot;I want the book&quot;);
+            bookLibrary.Enqueue(id, &quot;1&quot;);
+            bookLibrary.Enqueue(id, &quot;2&quot;);
+            bookLibrary.ReturnBook(id);
+            bookLibrary.CheckoutBook(id, &quot;I want the book&quot;);
+            var queue = bookLibrary.GetBookById(id).ShowQueue();
+            CollectionAssert.AreEquivalent(queue, new[] {&quot;1&quot;, &quot;2&quot;});
+        }
+
+        [Test]
+        public void AddBook_ShouldAddBookWithEmptyQueue()
+        {
+            var id = bookLibrary.AddBook(new Book(BookName1));
+            var queue = bookLibrary.GetBookById(id).ShowQueue();
+            Assert.AreEqual(queue.Count(), 0);
+        }
+
+        [Test]
+        public void Enqueue_ShouldNotModifyOtherBooksWithSameTitle()
+        {
+            var id1 = bookLibrary.AddBook(new Book(BookName1));
+            var id2 = bookLibrary.AddBook(new Book(BookName1));
+
+            bookLibrary.CheckoutBook(id1, &quot;user1&quot;);
+            bookLibrary.CheckoutBook(id2, &quot;user2&quot;);
+
+            bookLibrary.Enqueue(id1, &quot;queue user&quot;);
+
+            var queue2 = bookLibrary.GetBookById(id2).ShowQueue();
+
+            Assert.AreEqual(queue2.Count(), 0);
+        }
+
+        private const string BookName1 = &quot;Book1&quot;;
+        private const string BookName2 = &quot;Book2&quot;;
+        private IBookLibrary bookLibrary;
+    }
+}</textarea>
+			</div>
+
+	</div>
+
+					<ul>
+						<li>
+							<a href="/000.html?query=addLesson">Добавить слайд</a>
+						</li>
+						<li>
+							<a href="/000.html?query=addQuiz">Добавить quiz</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+			<script src='scripts/jquery-1.10.2.min.js'></script>
+			<script src='scripts/jquery-ui.min.js'></script>
+			<script src='scripts/bootstrap.min.js'></script>
+			<script src='scripts/katex.min.js'></script>
+			<script src='scripts/jsdifflib.js'></script>
+			<script src='scripts/jquery.flexslider-min.js'></script>
+			<script src='scripts/codemirror.js'></script>
+			<script src='scripts/clike.js'></script>
+			<script src='scripts/python.js'></script>
+			<script src='scripts/show-hint.js'></script>
+			<script src='scripts/cscompleter.js'></script>
+			<script src='scripts/csharp-hint.js'></script>
+			<script src='scripts/closebrackets.js'></script>
+			<script src='scripts/matchbrackets.js'></script>
+			<script src='scripts/active-line.js'></script>
+			<script src='scripts/slide-checking.js'></script>
+			<script src='scripts/slide-comments.js'></script>
+			<script src='scripts/slide-diff.js'></script>
+			<script src='scripts/slide-editor.js'></script>
+			<script src='scripts/slide-gallery.js'></script>
+			<script src='scripts/slide-guest.js'></script>
+			<script src='scripts/slide-hints.js'></script>
+			<script src='scripts/slide-localvisits.js'></script>
+			<script src='scripts/slide-modals.js'></script>
+			<script src='scripts/slide-nav.js'></script>
+			<script src='scripts/slide-popovers.js'></script>
+			<script src='scripts/slide-quiz.js'></script>
+			<script src='scripts/slide-reload.js'></script>
+			<script src='scripts/slide-run.js'></script>
+			<script src='scripts/slide-solutions-like.js'></script>
+			<script src='scripts/slide-tex.js'></script>
+			<script src='scripts/slide-utils.js'></script>
+			<script src='scripts/slide-versions.js'></script>
+			<script src='scripts/slide-video.js'></script>
+	</body>
+</html>

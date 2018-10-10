@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Unit
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://ulearn.azurewebsites.net/unit">
+    <id>c9920bca-0b07-46e7-b9b4-043ec35dca73</id>
+    <url>automation-test-session</url>
+    <title>Задание для тест-сессии</title>
+</Unit>

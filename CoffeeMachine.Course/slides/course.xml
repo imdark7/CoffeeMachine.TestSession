@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Course xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://ulearn.azurewebsites.net/course">
+    <title>Тест-сессия</title>
+    <language name="cs" version="7" />
+    <manual-checking>true</manual-checking>
+    <scoring defaultExercise="task" defaultQuiz="task">
+        <group id="task" abbr="task" description="Задачи" set_by_instructor="false">Задачи</group>
+    </scoring>
+</Course>
