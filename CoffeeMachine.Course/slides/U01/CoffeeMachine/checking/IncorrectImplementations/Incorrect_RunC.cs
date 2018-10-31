@@ -7,22 +7,15 @@ namespace CoffeeMachine.IncorrectImplementations
     {
         public override void Run()
         {
-            if (CoffeeType == CoffeeType.Unknown)
-            {
-                throw new CoffeeMachineException("You can't start making coffee. First, select coffee type");
-            }
-
-            var cost = CoffeeType.Price();
-            if (cost > Balance)
-            {
-                throw new CoffeeMachineException("You can't start making coffee. Not enough money for selected coffee type");
-            }
-
             if (WorkStatus == WorkStatus.TakeYourCoffee)
             {
                 throw new CoffeeMachineException("You can't start making coffee. First, take a cup from the coffee machine");
             }
-            Balance -= cost;
+            if (WorkStatus == WorkStatus.InsertMoneyOrSelectCoffee)
+            {
+                throw new CoffeeMachineException("You can't start making coffee. First, select Coffee Type, Size and Sugar level");
+            }
+            Balance -= CoffeeType.Price();
             WorkStatus = WorkStatus.TakeYourCoffee;
         }
     }

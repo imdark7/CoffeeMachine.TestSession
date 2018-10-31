@@ -5,3 +5,6 @@ CoffeeMachine.Course/slides/U01/CoffeeMachine/.vs/
 CoffeeMachine.Course/slides.zip
 bin/
 obj/
+.vs/
+CoffeeMachine.Course/slides/U01/CoffeeMachine/.vs
+CoffeeMachine.Course/slides/U01/CoffeeMachine/CoffeeMachine.csproj.user

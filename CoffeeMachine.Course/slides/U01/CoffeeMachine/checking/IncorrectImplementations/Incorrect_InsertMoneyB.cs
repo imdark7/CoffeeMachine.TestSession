@@ -10,7 +10,7 @@ namespace CoffeeMachine.IncorrectImplementations
         {
             if (moneyAmount + Balance < 0)
             {
-                throw new CoffeeMachineException("Balance must be a positive number");
+                throw new CoffeeMachineException("Amount must be a positive number");
             }
             if (WorkStatus == WorkStatus.TakeYourCoffee)
             {
